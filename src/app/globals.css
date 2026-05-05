@@ -1,26 +1,166 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5efe6;
+  --foreground: #1e2b28;
+  --surface: rgba(255, 251, 246, 0.78);
+  --surface-strong: #fffaf4;
+  --surface-muted: #ece2d4;
+  --line: rgba(52, 75, 70, 0.14);
+  --line-strong: rgba(52, 75, 70, 0.28);
+  --accent: #24453f;
+  --accent-strong: #16312c;
+  --accent-soft: #d8e6df;
+  --highlight: #b88f62;
+  --muted: #5b6966;
+  --success: #557a67;
+  --warning: #8a6943;
+  --shadow: 0 24px 80px rgba(30, 43, 40, 0.11);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-surface-muted: var(--surface-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-highlight: var(--highlight);
+  --color-muted: var(--muted);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --font-sans:
+    "Avenir Next", "Segoe UI", "Helvetica Neue", "Gill Sans", sans-serif;
+  --font-serif:
+    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-image:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.7), transparent 28%),
+    radial-gradient(circle at right 15%, rgba(184, 143, 98, 0.18), transparent 26%),
+    linear-gradient(180deg, #f7f1e7 0%, #f2eadf 50%, #efe6da 100%);
+}
+
+a,
+button {
+  transition:
+    color 150ms ease,
+    background-color 150ms ease,
+    border-color 150ms ease,
+    opacity 150ms ease,
+    transform 150ms ease;
+}
+
+::selection {
+  background: rgba(36, 69, 63, 0.18);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.app-frame {
+  position: relative;
+  isolation: isolate;
+}
+
+.app-frame::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.55), transparent 22%),
+    radial-gradient(circle at 80% 10%, rgba(184, 143, 98, 0.16), transparent 20%),
+    radial-gradient(circle at 50% 100%, rgba(36, 69, 63, 0.08), transparent 28%);
+}
+
+.panel {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.panel-strong {
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+  box-shadow: var(--shadow);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(36, 69, 63, 0.14);
+  background: rgba(255, 250, 244, 0.92);
+  padding: 0.45rem 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--accent);
+  padding: 0.875rem 1.35rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f8f4ee;
+}
+
+.primary-button:hover {
+  background: var(--accent-strong);
+  transform: translateY(-1px);
+}
+
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 250, 244, 0.65);
+  padding: 0.875rem 1.35rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.secondary-button:hover {
+  background: rgba(255, 250, 244, 0.95);
+}
+
+.hairline {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(36, 69, 63, 0.18) 20%,
+    rgba(36, 69, 63, 0.18) 80%,
+    transparent 100%
+  );
 }
